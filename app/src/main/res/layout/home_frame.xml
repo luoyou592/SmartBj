@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/page_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </FrameLayout>
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:background="#60000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="2dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp">
+        <RadioButton
+            android:id="@+id/tab_home"
+            android:drawableTop="@drawable/tab_home_selector"
+            style="@style/TabBtnStyle"
+            android:text="首页"/>
+        <RadioButton
+            android:id="@+id/tab_news"
+            android:drawableTop="@drawable/tab_news_selector"
+            style="@style/TabBtnStyle"
+            android:text="新闻中心"/>
+        <RadioButton
+            android:id="@+id/tab_smart"
+            android:drawableTop="@drawable/tab_smratservice_selector"
+            style="@style/TabBtnStyle"
+            android:text="智慧服务"/>
+        <RadioButton
+            android:id="@+id/tab_gov"
+            android:drawableTop="@drawable/tab_gov_selector"
+            style="@style/TabBtnStyle"
+            android:text="政务"/>
+        <RadioButton
+            android:id="@+id/tab_setting"
+            android:drawableTop="@drawable/tab_setting_selector"
+            style="@style/TabBtnStyle"
+            android:text="设置中心"/>
+    </RadioGroup>
+
+</RelativeLayout>
