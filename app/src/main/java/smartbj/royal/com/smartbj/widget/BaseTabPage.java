@@ -73,5 +73,9 @@ public class BaseTabPage extends RelativeLayout implements View.OnClickListener 
     public void setOnTitleMenuClickListener(OnTitleMenuClickListener listener) {
         mMenuClickListener = listener;
     }
+    public void loadDatafromService() {
+
+
+    }
 
 }

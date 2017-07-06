@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="slidingmenu_offset">180dp</dimen>
+    <dimen name="bar_height">45dp</dimen>
+    <dimen name="dot_radius">5dp</dimen>
 </resources>

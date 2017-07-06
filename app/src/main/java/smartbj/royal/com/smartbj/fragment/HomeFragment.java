@@ -64,6 +64,7 @@ public class HomeFragment extends Fragment implements RadioGroup.OnCheckedChange
             mTabPageCache.put(checkedId, mCurrentTabPage);
         }
         //添加之前清除之前数据，保存只缓存一个
+
         mPageContainer.removeAllViews();
         mPageContainer.addView(mCurrentTabPage);
         if (mTabChangeListener!=null){
@@ -108,8 +109,12 @@ public class HomeFragment extends Fragment implements RadioGroup.OnCheckedChange
                 tabPage.hideMenu();
                 break;
         }
+        //发送网络请求
+        tabPage.loadDatafromService();
         return tabPage;
     }
+
+
     public interface OnTabChangeListener{
         void tabToggle(int checkedId);
         void menuSwitch();

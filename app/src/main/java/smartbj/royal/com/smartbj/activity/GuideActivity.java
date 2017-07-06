@@ -24,7 +24,7 @@ public class GuideActivity extends BaseActivity implements ViewPager.OnPageChang
     ViewPager mViewPager;
     @BindView(R.id.btn_start)
     Button mBtnStart;
-    @BindView(R.id.indicator)
+    @BindView(R.id.indicator_aa)
     CirclePageIndicator mIndicator;
     private Context mContext;
     private int[] mPages = new int[]{R.mipmap.guide_1, R.mipmap.guide_2, R.mipmap.guide_3};
