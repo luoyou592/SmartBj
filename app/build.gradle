@@ -35,4 +35,19 @@ dependencies {
     compile 'com.github.uncleleonfan:FunBanner:1.1.5'
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.8.1'
+    compile files('src/main/libs/MobCommons-2017.0608.1618.jar')
+    compile files('src/main/libs/MobTools-2017.0608.1618.jar')
+    compile files('src/main/libs/ShareSDK-Core-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Email-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Facebook-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-QQ-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-QZone-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-ShortMessage-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-SinaWeibo-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-TencentWeibo-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Twitter-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Wechat-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Wechat-Core-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Wechat-Favorite-3.0.0.jar')
+    compile files('src/main/libs/ShareSDK-Wechat-Moments-3.0.0.jar')
 }

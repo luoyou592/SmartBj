@@ -53,6 +53,17 @@ public class CategoriBean {
         private int id;
         private String title;
         private int type;
+        private String url;
+
+        public String getUrl() {
+
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
         /**
          * id : 10007
          * title : 北京

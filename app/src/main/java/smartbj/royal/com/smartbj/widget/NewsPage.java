@@ -11,9 +11,6 @@ import android.widget.RelativeLayout;
 
 import com.viewpagerindicator.TabPageIndicator;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import smartbj.royal.com.smartbj.R;
@@ -28,8 +25,8 @@ public class NewsPage extends RelativeLayout {
     TabPageIndicator mIndicator;
     @BindView(R.id.view_pager)
     ViewPager mViewPager;
-    private String[] mDatas = {"新闻","体育","鱼儿","娱乐","头条","茶余","饭后","电影","体育","鱼儿","娱乐"};
-    private List<CategoriBean.DataBean.ChildrenBean> mChildren = new ArrayList<>();
+    //private String[] mDatas = {"新闻","体育","鱼儿","娱乐","头条","茶余","饭后","电影","体育","鱼儿","娱乐"};
+    private CategoriBean.DataBean mData;
 
     public NewsPage(Context context) {
         this(context, null);
@@ -39,15 +36,14 @@ public class NewsPage extends RelativeLayout {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.news_page, this);
         ButterKnife.bind(this, this);
-        setData();
         init();
     }
 
-    private void setData() {
-        CategoriBean.DataBean dataBean = new CategoriBean.DataBean();
-        mChildren = dataBean.getChildren();
-        /*mIndicator.notifyDataSetChanged();
-        mPagerAdapter.notifyDataSetChanged();*/
+    public void setData(CategoriBean.DataBean data) {
+        mData = data;
+
+        mIndicator.notifyDataSetChanged();
+        mPagerAdapter.notifyDataSetChanged();
     }
 
     private void init() {
@@ -60,15 +56,15 @@ public class NewsPage extends RelativeLayout {
     private PagerAdapter mPagerAdapter = new PagerAdapter() {
         @Override
         public CharSequence getPageTitle(int position) {
-
-            //return mDatas[position];
-            return mChildren.get(position).getTitle();
+            return mData.getChildren().get(position).getTitle();
         }
 
         @Override
         public int getCount() {
-            //return mDatas.length;
-            return mChildren.size();
+            if (mData==null){
+                return 0;
+            }
+            return mData.getChildren().size();
         }
 
         @Override
@@ -82,6 +78,7 @@ public class NewsPage extends RelativeLayout {
             textView.setText(mDatas[position]);
             container.addView(textView);*/
             NewsRefreshView refreshView = new NewsRefreshView(getContext());
+            refreshView.setUrl(mData.getChildren().get(position).getUrl());
             container.addView(refreshView);
             return refreshView;
         }

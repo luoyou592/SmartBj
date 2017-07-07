@@ -20,6 +20,15 @@ public class SharedPreUtil {
         return sp.getBoolean(keyName,false);
     }
 
+    public static void saveInt(Context context, String keyName ,int value){
+        SharedPreferences sp = getSharedPreferences(context);
+        sp.edit().putInt(keyName,value).commit();
+    }
+    public static int getInt(Context context,String keyName){
+        SharedPreferences sp = getSharedPreferences(context);
+        return sp.getInt(keyName,2);
+    }
+
 
 
     private static SharedPreferences getSharedPreferences(Context context){

@@ -24,6 +24,9 @@ public class BaseTabPage extends RelativeLayout implements View.OnClickListener 
     TextView mTvTitle;
     @BindView(R.id.tab_frame)
     FrameLayout mTabFrame;
+    @BindView(R.id.iv_switch)
+    ImageView mIvSwitch;
+    private boolean isList = true;
 
     private OnTitleMenuClickListener mMenuClickListener;
 
@@ -40,6 +43,7 @@ public class BaseTabPage extends RelativeLayout implements View.OnClickListener 
 
     private void setListener() {
         mIvMenu.setOnClickListener(this);
+        mIvSwitch.setOnClickListener(this);
     }
 
     /**
@@ -57,12 +61,31 @@ public class BaseTabPage extends RelativeLayout implements View.OnClickListener 
 
     @Override
     public void onClick(View v) {
-        //接口监听
-        if (mMenuClickListener != null) {
-            mMenuClickListener.switchMenu();
+        if (v==mIvMenu){
+            //接口监听
+            if (mMenuClickListener != null) {
+                mMenuClickListener.switchMenu();
+            }
+        }else if (v==mIvSwitch){
+            if (isList){
+                isList = !isList;
+                mIvSwitch.setImageResource(R.mipmap.icon_pic_grid_type);
+
+            }else{
+                mIvSwitch.setImageResource(R.mipmap.icon_pic_list_type);
+                isList = !isList;
+            }
+            //事件源从这里发起
+            onSwitchView(isList);
         }
+
     }
-    public void onMenuChange(int position){
+
+    public void onSwitchView(boolean isList) {
+
+    }
+
+    public void onMenuChange(int position) {
 
     }
 
@@ -73,6 +96,7 @@ public class BaseTabPage extends RelativeLayout implements View.OnClickListener 
     public void setOnTitleMenuClickListener(OnTitleMenuClickListener listener) {
         mMenuClickListener = listener;
     }
+
     public void loadDatafromService() {
 
 

@@ -18,7 +18,7 @@ import smartbj.royal.com.smartbj.utils.SharedPreUtil;
  */
 
 public class SplashActivity extends BaseActivity implements Animation.AnimationListener {
-    private static final int DURATION = 1000;
+    private static final int DURATION = 1500;
     @BindView(R.id.iv_splash)
     ImageView mIvSplash;
     private Context mContext;

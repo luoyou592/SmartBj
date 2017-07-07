@@ -10,9 +10,7 @@ import android.widget.Toast;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import smartbj.royal.com.smartbj.app.Constant;
 import smartbj.royal.com.smartbj.bean.CategoriBean;
 import smartbj.royal.com.smartbj.net.GsonRequest;
 import smartbj.royal.com.smartbj.net.NetworkListener;
@@ -22,8 +20,7 @@ import smartbj.royal.com.smartbj.net.NetworkListener;
  */
 
 public class NewsCenterPage extends BaseTabPage {
-    private List<CategoriBean.DataBean> mData = new ArrayList<>();
-
+    private CategoriBean mCategoriBean;
     public NewsCenterPage(Context context) {
         this(context, null);
     }
@@ -35,9 +32,9 @@ public class NewsCenterPage extends BaseTabPage {
 
     @Override
     public void loadDatafromService() {
-        String url = "http://10.0.2.2:8080/zhbj/categories.json";
+
         //创建jsonrequest请求方式（gsonrequest继承jsonrequest）
-        GsonRequest<CategoriBean> request = new GsonRequest<CategoriBean>(url,mListener,CategoriBean.class);
+        GsonRequest<CategoriBean> request = new GsonRequest<CategoriBean>(Constant.CATEGORI_URL,mListener,CategoriBean.class);
         //2.请求网络
         Volley.newRequestQueue(getContext()).add(request);
         //3.请求回调
@@ -47,14 +44,16 @@ public class NewsCenterPage extends BaseTabPage {
 
 
     private NetworkListener<CategoriBean> mListener = new NetworkListener<CategoriBean>(){
+
+
+
         //获取数据成功回调
         @Override
         public void onResponse(CategoriBean response) {
             Log.d("luoyou", "aa");
-            Toast.makeText(getContext(),"result="+response.getExtend(),Toast.LENGTH_SHORT).show();
-            CategoriBean dataBean = new CategoriBean();
-            dataBean.setData(response.getData());
-            mData = response.getData();
+            //Toast.makeText(getContext(),"result="+response.getExtend(),Toast.LENGTH_SHORT).show();
+            mCategoriBean = response;
+
             //切换到新闻页面
             onMenuChange(0);
         }
@@ -70,10 +69,18 @@ public class NewsCenterPage extends BaseTabPage {
     @Override
     public void onMenuChange(int position) {
         //TextView textView = new TextView(getContext());
+        //2代表组图
+        if (position==2){
+            mIvSwitch.setVisibility(View.VISIBLE);
+        }else{
+            mIvSwitch.setVisibility(View.GONE);
+        }
         View view = null;
         switch (position) {
             case 0:  //代表新闻
-                view = new NewsPage(getContext());
+                NewsPage newsPage = new NewsPage(getContext());
+                newsPage.setData(mCategoriBean.getData().get(0));
+                view = newsPage;
                 break;
             case 1:  //代表专题
                 TextView subject = new TextView(getContext());
@@ -81,9 +88,9 @@ public class NewsCenterPage extends BaseTabPage {
                 view = subject;
                 break;
             case 2:  //代表组图
-                TextView photos = new TextView(getContext());
-                photos.setText("组图");
-                view = photos;
+                PhotosPage photosPage = new PhotosPage(getContext());
+                photosPage.setData(mCategoriBean.getData().get(2).getUrl());
+                view = photosPage;
                 break;
             case 3:  //代表互动
                 TextView hudong = new TextView(getContext());
@@ -96,4 +103,9 @@ public class NewsCenterPage extends BaseTabPage {
 
     }
 
+    @Override
+    public void onSwitchView(boolean isList) {
+        PhotosPage photosPage = (PhotosPage) mTabFrame.getChildAt(0);
+        photosPage.setonSwitchView(isList);
+    }
 }
